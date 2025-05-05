@@ -1,0 +1,29 @@
+# Write a python program to define a module to find Fibonacci Numbers and import the module to another program.
+
+#fibonacci_program.py
+import fibonacci_module
+def main():
+	try:
+		n = int(input("Enter the max value: "))
+		if n > 0:
+			fib_series = fibonacci_module.generate_fibonacci_sequence(n)
+			print(f"Fibonacci series upto {n} :")
+			print(" ".join(map(str, fib_series)), end = " ")
+		else:
+			print("Please enter a positive integer")
+	except ValueError:
+		print("Invalid input! Please enter a valid integer.")
+if __name__ == "__main__":
+	main()
+
+# fibonacci_module.py
+def generate_fibonacci_sequence(count):
+	if count <= 0:
+		return[]
+	elif count == 1:
+		return[0]
+	elif count == 2:
+		return[0,1]
+	sequence = generate_fibonacci_sequence(count - 1)
+	sequence.append(sequence[-1] + sequence[-2])
+	return sequence
